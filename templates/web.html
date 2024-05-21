@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/index.css">
+    <title>Analizador Léxico</title>
+</head>
+
+<body>
+    <h1>Analizador Léxico: JavaScript, Java, Python</h1>
+    <form action="/" method="post">
+        <textarea name="code" rows="10" cols="50" placeholder="Escribe tu código aquí..."></textarea><br>
+        <input type="submit" value="Analizar">
+    </form>
+
+    {% if token_data %}
+    <h2>Tokens Analizados</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Token</th>
+                <th>Palabra Reservada</th>
+                <th>Identificador</th>
+                <th>Simbolo</th>
+                <th>Error</th>
+                <th>Lenguajes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in token_data %}
+            <tr>
+                <td>{{ data.token }}</td>
+                <td>{{ data.reserved }}</td>
+                <td>{{ data.identifier }}</td>
+                <td>{{ data.symbol }}</td>
+                <td>{{ data.error }}</td>
+                <td>{{ data.languages }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+    <h2>Totales</h2>
+    <ul>
+        <li>Total de errores: {{ totals.errors }}</li>
+        <li>Total de paréntesis abiertos: {{ totals.open_paren }}</li>
+        <li>Total de paréntesis cerrados: {{ totals.close_paren }}</li>
+        <li>Total de llaves abiertas: {{ totals.open_brace }}</li>
+        <li>Total de llaves cerradas: {{ totals.close_brace }}</li>
+        <li>Total de comas: {{ totals.comma }}</li>
+        <li>Total de puntos y comas: {{ totals.semicolon }}</li>
+        <li>Total de igual: {{ totals.equal }}</li>
+        <li>Total de identificadores: {{ totals.identifiers }}</li>
+        <li>Total de palabras reservadas: {{ totals.reserved }}</li>
+    </ul>
+</body>
+
+</html>
